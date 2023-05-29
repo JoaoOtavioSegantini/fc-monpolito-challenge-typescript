@@ -39,14 +39,12 @@ describe("ClientAdmFacade test", () => {
 
     const client = await ClientModel.findOne({ where: { id: "1" } });
 
-    expect(client.dataValues).toStrictEqual({
-      address: "Address 1",
-      createdAt: now,
-      email: "x@x.com",
-      id: "1",
-      name: "Client 1",
-      updatedAt: now,
-    });
+    expect(client.address).toBe("Address 1");
+    expect(client.createdAt).toStrictEqual(now);
+    expect(client.email).toBe("x@x.com");
+    expect(client.id).toBe("1");
+    expect(client.name).toBe("Client 1");
+    expect(client.updatedAt).toStrictEqual(now);
   });
 
   it("should find a client", async () => {
