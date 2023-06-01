@@ -1,0 +1,48 @@
+@host = http://localhost:3000
+@id = 1
+
+GET {{host}}/invoice/{{id}}
+Content-Type: application/json
+Accept: application/json
+
+###
+POST {{host}}/products
+Content-Type: application/json
+Accept: application/json
+
+{ 
+    "name": "Product 1",
+    "description": "Product 1 description",
+    "purchasePrice": 50,
+    "salesPrice": 70,
+    "stock": 10
+}
+
+###
+POST {{host}}/clients
+Content-Type: application/json
+Accept: application/json
+
+{ 
+    "name": "Client 1",
+    "email": "l@gmail.com",
+    "complement": "casa",
+    "address": "Rua xxx, Avenida yyy, número 444 - São Paulo/SP",
+    "number": "444",
+    "city": "São Paulo",
+    "state": "SP",
+    "zipCode": "5558800-558",
+    "street": "Rua xxx",
+    "document": "ddxxx"
+
+}
+
+###
+POST {{host}}/checkout
+Content-Type: application/json
+Accept: application/json
+
+{ 
+      "clientId": "c453b4e0-f3b6-4238-96b4-b4d73fb016b3",
+      "products": [ { "productId": "fabf7e9d-b312-4708-b1f2-5b0c64a7aafd"}, { "productId": "37e15ef3-3e54-4c48-aa89-5a2366c7f83a" }]
+}
