@@ -7,8 +7,8 @@ volumes:
 services:
   postgres:
     image: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    # volumes:
+    #    - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${DATABASE}
       POSTGRES_USER: ${DATABASE_USERNAME}

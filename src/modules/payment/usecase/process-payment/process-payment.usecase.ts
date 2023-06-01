@@ -16,7 +16,9 @@ export default class ProcessPaymentUseCase implements UseCaseInterface {
       amount: input.amount,
       orderId: input.orderId,
     });
+
     transaction.process();
+
     const persistTransaction = await this.transactionRepository.save(
       transaction
     );
