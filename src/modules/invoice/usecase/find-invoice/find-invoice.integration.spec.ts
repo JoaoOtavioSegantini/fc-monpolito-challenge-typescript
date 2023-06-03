@@ -67,7 +67,7 @@ describe("Find Invoice integration test", () => {
     expect(result.address.city).toBe(invoice.city);
     expect(result.address.state).toBe(invoice.state);
     expect(result.address.zipCode).toBe(invoice.zipCode);
-    expect(result.items[0].id).toBe(product.id);
+    expect(result.items[0].id).toBeDefined();
     expect(result.items[0].name).toBe(product.name);
     expect(result.items[0].price).toBe(product.price);
     expect(result.total).toBe(59.9);

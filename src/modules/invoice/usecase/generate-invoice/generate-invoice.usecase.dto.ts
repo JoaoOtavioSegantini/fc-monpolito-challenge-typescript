@@ -12,6 +12,7 @@ export interface GenerateInvoiceUseCaseInputDto {
     id: string;
     name: string;
     price: number;
+    invoiceId?: string;
   }[];
 }
 
