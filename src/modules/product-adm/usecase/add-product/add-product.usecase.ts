@@ -12,6 +12,7 @@ export default class AddProductUseCase {
       name: input.name,
       description: input.description,
       purchasePrice: input.purchasePrice,
+      salesPrice: input.salesPrice,
       stock: input.stock,
     };
 
