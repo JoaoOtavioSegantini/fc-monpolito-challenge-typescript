@@ -32,14 +32,14 @@ describe("ClientAdmFacade test", () => {
       id: "1",
       name: "Client 1",
       email: "x@x.com",
-      address: "Address 1",
+      city: "Address 1",
     };
 
     await facade.add(input);
 
     const client = await ClientModel.findOne({ where: { id: "1" } });
 
-    expect(client.address).toBe("Address 1");
+    expect(client.city).toBe("Address 1");
     expect(client.createdAt).toStrictEqual(now);
     expect(client.email).toBe("x@x.com");
     expect(client.id).toBe("1");
@@ -54,7 +54,7 @@ describe("ClientAdmFacade test", () => {
       id: "1",
       name: "Client 1",
       email: "x@x.com",
-      address: "Address 1",
+      city: "Address 1",
     };
 
     await facade.add(input);
@@ -65,6 +65,6 @@ describe("ClientAdmFacade test", () => {
     expect(client.id).toBe(input.id);
     expect(client.name).toBe(input.name);
     expect(client.email).toBe(input.email);
-    expect(client.address).toBe(input.address);
+    expect(client.city).toBe(input.city);
   });
 });

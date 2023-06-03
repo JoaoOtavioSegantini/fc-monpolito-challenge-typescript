@@ -1,6 +1,6 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
-import { AppError } from "../../../api/middlewares/error.handlers";
+import { AppError } from "../../../../infrastructure/api/middlewares/error.handlers";
 import ClientAdmFacadeInterface from "../../../client-adm/facade/client-adm.facade.interface";
 import InvoiceFacadeInterface from "../../../invoice/facade/invoice.facade.interface";
 import PaymentFacadeInterface from "../../../payment/facade/facade.interface";
@@ -39,7 +39,7 @@ export default class PlaceOrderUsecase implements UseCaseInterface {
       id: new Id(client.id),
       name: client.name,
       email: client.email,
-      address: client.address,
+      address: client.city,
     });
 
     const order = new Order({ client: myClient, products });

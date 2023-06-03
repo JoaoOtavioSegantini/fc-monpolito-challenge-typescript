@@ -7,7 +7,7 @@ describe("Client adm unit tests", () => {
       let _client = new Client({
         name: "",
         email: "johndoe@gmail.com",
-        address: "a simple address",
+        street: "a simple address",
         updatedAt: new Date(),
         createdAt: new Date(),
       });
@@ -20,7 +20,7 @@ describe("Client adm unit tests", () => {
         id: new Id("123"),
         name: "John Doe",
         email: "",
-        address: "a simple address",
+        street: "a simple address",
       });
     }).toThrowError("client: Email is required");
   });
@@ -31,7 +31,7 @@ describe("Client adm unit tests", () => {
         id: new Id("123"),
         name: "",
         email: "",
-        address: "a simple address",
+        street: "a simple address",
       });
     }).toThrowError("client: Name is required,client: Email is required");
   });
@@ -41,7 +41,7 @@ describe("Client adm unit tests", () => {
         id: new Id("123"),
         name: "John Doe",
         email: "simpleemail",
-        address: "a simple address",
+        street: "a simple address",
       });
     }).toThrowError("client: Email is not valid");
   });
@@ -51,17 +51,15 @@ describe("Client adm unit tests", () => {
       id: new Id("123"),
       name: "John",
       email: "johndoe@gmail.com",
-      address: "a simple address",
+      street: "a simple address",
     });
 
     // Act
     client.changeName("Jane");
     client.changeEmail("changed");
-    client.changeAddress("address changed");
 
     // Assert
     expect(client.name).toBe("Jane");
     expect(client.email).toBe("changed");
-    expect(client.address).toBe("address changed");
   });
 });

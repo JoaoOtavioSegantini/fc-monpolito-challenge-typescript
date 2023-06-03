@@ -18,17 +18,29 @@ export default class AddClientUseCase {
       id: new Id(input.id) || new Id(),
       name: input.name,
       email: input.email,
-      address: input.address,
+      number: input.number,
+      city: input.city,
+      state: input.state,
+      zipCode: input.zipCode,
+      complement: input.complement,
+      street: input.street,
+      document: input.document,
     };
 
     const client = new Client(props);
+
     await this._clientRepository.add(client);
 
     return {
       id: client.id.id,
       name: client.name,
       email: client.email,
-      address: client.address,
+      number: client.number,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode,
+      complement: client.complement,
+      street: client.street,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     };

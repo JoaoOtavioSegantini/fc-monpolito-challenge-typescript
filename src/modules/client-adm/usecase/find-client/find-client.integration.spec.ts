@@ -36,6 +36,7 @@ describe("Add client integration test", () => {
       name: "Client 1",
       email: "x@x.com",
       address: "Address 1",
+      city: "Address 1",
     };
 
     await addUsecase.execute(client);
@@ -48,7 +49,7 @@ describe("Add client integration test", () => {
     expect(result.id).toEqual(input.id);
     expect(result.name).toEqual(client.name);
     expect(result.email).toEqual(client.email);
-    expect(result.address).toEqual(client.address);
+    expect(result.city).toEqual(client.address);
     expect(result.createdAt).toEqual(now);
     expect(result.updatedAt).toEqual(now);
   });
