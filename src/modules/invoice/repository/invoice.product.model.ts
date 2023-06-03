@@ -4,11 +4,12 @@ import {
   Column,
   ForeignKey,
   Model,
+  Default,
 } from "sequelize-typescript";
 import { InvoiceModel } from "./invoice.model";
 
 @Table({
-  tableName: "products",
+  tableName: "invoice_products",
   timestamps: false,
 })
 export class ProductModel extends Model {
@@ -17,12 +18,19 @@ export class ProductModel extends Model {
   declare id: string;
 
   @ForeignKey(() => InvoiceModel)
-  @Column({ allowNull: false })
+  @Column({ field: "invoice_id" })
   declare invoiceId: string;
 
   @Column({ allowNull: false })
   declare name: string;
 
-  @Column({ allowNull: false })
+  @Default(0.0)
+  @Column({ allowNull: false, type: "float" })
   declare price: number;
+
+  @Column({ allowNull: false, field: "created_at" })
+  declare createdAt: Date;
+
+  @Column({ allowNull: false, field: "updated_at" })
+  declare updatedAt: Date;
 }
