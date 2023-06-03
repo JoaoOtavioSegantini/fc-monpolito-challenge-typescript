@@ -71,16 +71,20 @@ describe("InvoiceFacade test", () => {
       id: inputInvoice.id,
       items: [
         {
-          id: products[0].id,
+          id: invoiceDb.items[0].id,
           invoiceId: "1",
           name: products[0].name,
           price: products[0].price,
+          createdAt: data,
+          updatedAt: data,
         },
         {
-          id: products[1].id,
+          id: invoiceDb.items[1].id,
           invoiceId: "1",
           name: products[1].name,
           price: products[1].price,
+          createdAt: data,
+          updatedAt: data,
         },
       ],
       name: inputInvoice.name,
