@@ -1,20 +1,22 @@
 import Address from "../../@shared/domain/value-object/address.value-object";
 import Id from "../../@shared/domain/value-object/id.value-object";
+import { AppError } from "../../../infrastructure/api/middlewares/error.handlers";
 import Invoice from "../domain/invoice.entity";
 import Product from "../domain/invoice.product.entity";
 import InvoiceGateway from "../gateway/invoice.gateway";
 
 import { InvoiceModel } from "./invoice.model";
+import { ProductModel } from "./invoice.product.model";
 
 export class InvoiceRepository implements InvoiceGateway {
   async find(id: string): Promise<Invoice> {
     const invoice = await InvoiceModel.findOne({
       where: { id: id },
-      include: [{ association: "items" }],
+      include: [{ model: ProductModel }],
     });
 
     if (!invoice) {
-      throw new Error("Invoice not found");
+      throw new AppError(404, "Invoice not found");
     }
 
     let products: Product[] = [];
@@ -24,6 +26,7 @@ export class InvoiceRepository implements InvoiceGateway {
         id: new Id(model.id),
         name: model.name,
         price: model.price,
+        invoiceId: model.invoiceId,
       });
 
       products.push(product);
@@ -46,28 +49,31 @@ export class InvoiceRepository implements InvoiceGateway {
     });
   }
   async generate(invoice: Invoice): Promise<InvoiceModel> {
-    return await InvoiceModel.create(
-      {
-        id: invoice.id.id,
-        name: invoice.name,
-        document: invoice.document,
-        street: invoice.address.street,
-        number: invoice.address.number,
-        complement: invoice.address.complement,
-        city: invoice.address.city,
-        state: invoice.address.state,
-        zipCode: invoice.address.zipCode,
-        items: invoice.items.map((item) => ({
-          id: item.id.id,
-          name: item.name,
-          price: item.price,
-        })),
-        createdAt: invoice.createdAt,
-        updatedAt: invoice.updatedAt,
-      },
-      {
-        include: [{ association: "items" }],
-      }
-    );
+    const data = await InvoiceModel.create({
+      id: invoice.id.id,
+      name: invoice.name,
+      document: invoice.document,
+      street: invoice.address.street,
+      number: invoice.address.number,
+      complement: invoice.address.complement,
+      city: invoice.address.city,
+      state: invoice.address.state,
+      zipCode: invoice.address.zipCode,
+      createdAt: invoice.createdAt,
+      updatedAt: invoice.updatedAt,
+    });
+
+    const model = invoice.items.map((item) => ({
+      id: new Id().id,
+      name: item.name,
+      invoiceId: data.id,
+      price: item.price,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }));
+
+    data.items = await ProductModel.bulkCreate(model);
+
+    return data;
   }
 }

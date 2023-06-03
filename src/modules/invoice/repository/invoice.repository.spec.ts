@@ -18,7 +18,7 @@ describe("Invoice Repository test", () => {
       sync: { force: true },
     });
 
-    sequelize.addModels([InvoiceModel, ProductModel]);
+    sequelize.addModels([ProductModel, InvoiceModel]);
     await sequelize.sync();
   });
 
@@ -71,10 +71,12 @@ describe("Invoice Repository test", () => {
       id: inputInvoice.id.id,
       items: [
         {
-          id: inputProduct.id.id,
+          id: invoiceDb.items[0].id,
           invoiceId: "1",
           name: inputProduct.name,
           price: inputProduct.price,
+          createdAt: now,
+          updatedAt: now,
         },
       ],
       name: inputInvoice.name,

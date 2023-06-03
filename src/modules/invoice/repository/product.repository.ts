@@ -1,4 +1,5 @@
 import Id from "../../@shared/domain/value-object/id.value-object";
+import { AppError } from "../../../infrastructure/api/middlewares/error.handlers";
 import Product from "../domain/invoice.product.entity";
 import ProductGateway from "../gateway/product.gateway";
 import { ProductModel } from "./invoice.product.model";
@@ -6,9 +7,12 @@ import { ProductModel } from "./invoice.product.model";
 export default class ProductRepository implements ProductGateway {
   async create(product: Product): Promise<void> {
     await ProductModel.create({
-      id: product.id.id,
+      id: new Id(),
       name: product.name,
       price: product.price,
+      invoiceId: product.invoiceId,
+      createdAt: product.createdAt,
+      updatedAt: product.updatedAt,
     });
   }
 
@@ -18,7 +22,7 @@ export default class ProductRepository implements ProductGateway {
     });
 
     if (!product) {
-      throw new Error("Product not found");
+      throw new AppError(404, "Product not found");
     }
 
     return new Product({
