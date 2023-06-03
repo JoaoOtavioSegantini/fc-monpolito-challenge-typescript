@@ -27,7 +27,7 @@ Accept: application/json
     "name": "Client 1",
     "email": "l@gmail.com",
     "complement": "casa",
-    "address": "Rua xxx, Avenida yyy, número 444 - São Paulo/SP",
+ //   "address": "Rua xxx, Avenida yyy, número 444 - São Paulo/SP",
     "number": "444",
     "city": "São Paulo",
     "state": "SP",
@@ -43,6 +43,6 @@ Content-Type: application/json
 Accept: application/json
 
 { 
-      "clientId": "c453b4e0-f3b6-4238-96b4-b4d73fb016b3",
+      "clientId": "4b6cc92d-7fb2-4ff0-8f09-60cd84ac77ed",
       "products": [ { "productId": "fabf7e9d-b312-4708-b1f2-5b0c64a7aafd"}, { "productId": "37e15ef3-3e54-4c48-aa89-5a2366c7f83a" }]
 }

@@ -1,0 +1,9 @@
+const { resolve } = require("path");
+
+module.exports = {
+  env: process.env.NODE_ENV || "development",
+  config: resolve("src/infrastructure/config/config.mjs"),
+  "seeders-path": resolve("src/infrastructure/seeders"),
+  "migrations-path": resolve("src/infrastructure/migrations"),
+  "models-path": resolve("src/infrastructure/models"),
+};
