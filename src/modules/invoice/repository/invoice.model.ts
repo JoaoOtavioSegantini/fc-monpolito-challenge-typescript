@@ -43,9 +43,9 @@ export class InvoiceModel extends Model {
   @Column({ allowNull: false })
   declare zipCode: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, field: "created_at" })
   declare createdAt: Date;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, field: "updated_at" })
   declare updatedAt: Date;
 }
