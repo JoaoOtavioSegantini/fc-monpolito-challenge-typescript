@@ -1,5 +1,5 @@
 @host = http://localhost:3000
-@id = 1
+@id = ae214b57-4341-4a4c-ba82-9d358aeae0de
 
 GET {{host}}/invoice/{{id}}
 Content-Type: application/json
@@ -27,7 +27,6 @@ Accept: application/json
     "name": "Client 1",
     "email": "l@gmail.com",
     "complement": "casa",
- //   "address": "Rua xxx, Avenida yyy, número 444 - São Paulo/SP",
     "number": "444",
     "city": "São Paulo",
     "state": "SP",

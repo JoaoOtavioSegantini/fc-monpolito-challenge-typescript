@@ -29,7 +29,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      invoiceId: {
+      invoice_id: {
         type: Sequelize.UUID,
         allowNull: true,
         references: { model: "invoices", key: "id" },

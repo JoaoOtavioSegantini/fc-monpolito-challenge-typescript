@@ -18,8 +18,8 @@ export class ProductModel extends Model {
   declare id: string;
 
   @ForeignKey(() => InvoiceModel)
-  @Column({ field: "invoice_id" })
-  declare invoiceId: string;
+  @Column({ allowNull: false })
+  declare invoice_id: string;
 
   @Column({ allowNull: false })
   declare name: string;

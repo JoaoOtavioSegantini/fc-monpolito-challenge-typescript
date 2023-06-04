@@ -26,7 +26,7 @@ export class InvoiceRepository implements InvoiceGateway {
         id: new Id(model.id),
         name: model.name,
         price: model.price,
-        invoiceId: model.invoiceId,
+        invoiceId: model.invoice_id,
       });
 
       products.push(product);
@@ -66,7 +66,7 @@ export class InvoiceRepository implements InvoiceGateway {
     const model = invoice.items.map((item) => ({
       id: new Id().id,
       name: item.name,
-      invoiceId: data.id,
+      invoice_id: data.id,
       price: item.price,
       createdAt: new Date(),
       updatedAt: new Date(),

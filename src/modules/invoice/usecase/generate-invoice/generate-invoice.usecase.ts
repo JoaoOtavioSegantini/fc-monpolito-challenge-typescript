@@ -37,6 +37,7 @@ export default class GenerateInvoiceUseCase {
     };
 
     const client = new Invoice(props);
+
     const invoice = await this.invoiceRepository.generate(client);
 
     return {

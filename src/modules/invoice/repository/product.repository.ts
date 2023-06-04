@@ -10,7 +10,7 @@ export default class ProductRepository implements ProductGateway {
       id: new Id(),
       name: product.name,
       price: product.price,
-      invoiceId: product.invoiceId,
+      invoice_id: product.invoiceId,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
     });
