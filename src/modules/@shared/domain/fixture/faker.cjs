@@ -25,8 +25,8 @@ function createRandomProduct() {
     purchasePrice: Number(faker.commerce.price()),
     salesPrice: Number(faker.commerce.price()),
     stock: faker.number.int({ max: 150 }),
-    createdAt: faker.date.anytime(),
-    updatedAt: faker.date.anytime(),
+    created_at: faker.date.anytime(),
+    updated_at: faker.date.anytime(),
   };
 }
 
