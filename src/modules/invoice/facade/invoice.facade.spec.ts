@@ -72,7 +72,7 @@ describe("InvoiceFacade test", () => {
       items: [
         {
           id: invoiceDb.items[0].id,
-          invoiceId: "1",
+          invoice_id: "1",
           name: products[0].name,
           price: products[0].price,
           createdAt: data,
@@ -80,7 +80,7 @@ describe("InvoiceFacade test", () => {
         },
         {
           id: invoiceDb.items[1].id,
-          invoiceId: "1",
+          invoice_id: "1",
           name: products[1].name,
           price: products[1].price,
           createdAt: data,

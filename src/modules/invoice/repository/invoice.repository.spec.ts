@@ -72,7 +72,7 @@ describe("Invoice Repository test", () => {
       items: [
         {
           id: invoiceDb.items[0].id,
-          invoiceId: "1",
+          invoice_id: "1",
           name: inputProduct.name,
           price: inputProduct.price,
           createdAt: now,
