@@ -6,6 +6,9 @@ import { InvoiceModel } from "../../../modules/invoice/repository/invoice.model"
 import { ProductModel as InvoiceProductModel } from "../../../modules/invoice/repository/invoice.product.model";
 import { ClientModel } from "../../../modules/client-adm/repository/client.model";
 
+//@ts-ignore
+import faker from "../../../modules/@shared/domain/fixture/faker.cjs";
+
 const sequelize = new Sequelize({ dialect: "sqlite", logging: false });
 
 const umzug = new Umzug({
@@ -26,17 +29,8 @@ describe("E2E tests", () => {
   });
 
   it("should create a client", async () => {
-    const response = await request(app).post("/clients").send({
-      name: "Client 1",
-      email: "l@gmail.com",
-      complement: "casa",
-      number: "444",
-      city: "São Paulo",
-      state: "SP",
-      zipCode: "5558800-558",
-      street: "Rua xxx",
-      document: "ddxxx",
-    });
+    const client = faker.createRandomUser();
+    const response = await request(app).post("/clients").send(client);
 
     expect(response.status).toBe(200);
     expect(response.body).toStrictEqual({});
@@ -53,13 +47,7 @@ describe("E2E tests", () => {
   });
 
   it("should create a product", async () => {
-    const product = {
-      name: "Product 1",
-      description: "Product 1 description",
-      purchasePrice: 50,
-      salesPrice: 70,
-      stock: 10,
-    };
+    const product = faker.createRandomProduct();
 
     const response = await request(app).post("/products").send(product);
 
@@ -116,36 +104,12 @@ describe("E2E tests", () => {
     expect(response.body.items[0].price).toBe(product.price);
   });
   it("should create a checkout", async () => {
-    await ClientModel.create({
-      id: "1",
-      name: "Client 1",
-      email: "l@gmail.com",
-      complement: "casa",
-      number: "444",
-      city: "São Paulo",
-      state: "SP",
-      zipCode: "5558800-558",
-      street: "Rua xxx",
-      document: "ddxxx",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
+    const client = faker.createRandomUser();
+    await ClientModel.create({ ...client, id: "1" });
 
-    const product = {
-      name: "Product 1",
-      description: "Product 1 description",
-      purchasePrice: 50,
-      salesPrice: 70,
-      stock: 10,
-    };
+    const product = faker.createRandomProduct();
 
-    const product2 = {
-      name: "Product 2",
-      description: "Product 2 description",
-      purchasePrice: 80,
-      salesPrice: 220,
-      stock: 100,
-    };
+    const product2 = faker.createRandomProduct();
 
     const productOne = await request(app).post("/products").send(product);
     const productTwo = await request(app).post("/products").send(product2);
@@ -165,7 +129,7 @@ describe("E2E tests", () => {
     expect(response.body.products[0].productId).toBe(productOne.body.id);
     expect(response.body.products[1].productId).toBe(productTwo.body.id);
     expect(response.body.status).toBe("approved");
-    expect(response.body.total).toBe(290);
+    expect(response.body.total).toBe(product.salesPrice + product2.salesPrice);
   });
   it("should not create a checkout when client not found", async () => {
     const response = await request(app)
