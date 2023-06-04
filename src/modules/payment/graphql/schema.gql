@@ -1,0 +1,19 @@
+scalar Date
+
+input ProcessPaymentInput {
+  orderId: String
+  amount: Float
+}
+
+type Payment {
+  transactionId: String
+  orderId: String
+  amount: Float
+  status: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Mutation {
+  processPayment(input: ProcessPaymentInput): Payment
+}
