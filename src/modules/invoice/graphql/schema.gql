@@ -1,0 +1,49 @@
+scalar Date
+
+type InvoiceItem {
+  id: String
+  name: String
+  price: Float
+  invoiceId: String
+}
+
+type Invoice {
+  id: ID
+  name: String
+  document: String
+  street: String
+  number: String
+  complement: String
+  city: String
+  state: String
+  zipCode: String
+  items: [InvoiceItem]
+}
+
+input InvoiceItemInput {
+  id: String
+  name: String
+  price: Float
+  invoiceId: String
+}
+
+input InvoiceInput {
+  id: ID
+  name: String
+  document: String
+  street: String
+  number: String
+  complement: String
+  city: String
+  state: String
+  zipCode: String
+  items: [InvoiceItemInput]
+}
+
+type Query {
+  findInvoiceByID(id: ID): Invoice
+}
+
+type Mutation {
+  generateInvoice(input: InvoiceInput): Invoice
+}
