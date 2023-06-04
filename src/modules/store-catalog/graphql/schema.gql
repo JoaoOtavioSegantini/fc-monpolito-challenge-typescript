@@ -1,0 +1,17 @@
+scalar Void
+
+type FindStoreCatalog {
+  id: String
+  name: String
+  description: String
+  salesPrice: Float
+}
+
+type FindAllStoreCatalogFacade {
+  products: [FindStoreCatalog]
+}
+
+type Query {
+  findAllProducts(input: Void): FindAllStoreCatalogFacade
+  findProduct(id: ID): FindStoreCatalog
+}
