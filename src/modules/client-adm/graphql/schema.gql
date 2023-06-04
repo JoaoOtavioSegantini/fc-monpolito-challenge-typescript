@@ -1,0 +1,37 @@
+scalar Date
+
+type Client {
+  id: ID
+  name: String
+  email: String
+  city: String
+  document: String
+  complement: String
+  street: String
+  number: String
+  state: String
+  zipCode: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+input ClientInput {
+  id: ID
+  name: String
+  email: String
+  city: String
+  document: String
+  complement: String
+  street: String
+  number: String
+  state: String
+  zipCode: String
+}
+
+type Mutation {
+  createUser(input: ClientInput): Client
+}
+
+type Query {
+  getClientById(id: ID): Client
+}
