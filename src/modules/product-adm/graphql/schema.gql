@@ -1,0 +1,23 @@
+scalar Void
+
+input AddProductInput {
+  id: String
+  name: String
+  description: String
+  purchasePrice: Float
+  salesPrice: Float
+  stock: Int
+}
+
+type Stock {
+  productId: String
+  stock: Int
+}
+
+type Query {
+  checkStock(id: ID): Stock
+}
+
+type Mutation {
+  addProduct(input: AddProductInput): Void
+}
