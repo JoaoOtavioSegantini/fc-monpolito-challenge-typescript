@@ -1,0 +1,26 @@
+scalar Date
+
+input PlaceOrderProducts {
+  productId: String
+}
+
+input PlaceOrderInput {
+  clientId: String
+  products: [PlaceOrderProducts]
+}
+
+type PlaceOrderProductsType {
+  productId: String
+}
+
+type PlaceOrder {
+  id: String
+  invoiceId: String
+  status: String
+  total: Float
+  products: [PlaceOrderProductsType]
+}
+
+type Mutation {
+  placeOrder(input: PlaceOrderInput): PlaceOrder
+}
