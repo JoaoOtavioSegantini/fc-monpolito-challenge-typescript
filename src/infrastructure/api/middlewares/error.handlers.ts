@@ -20,9 +20,7 @@ export const errorLogger = (
   next: NextFunction
 ) => {
   const time = new Date();
-  console.log(`${time} error ${error.message}`);
-  console.log(error);
-
+  console.log(`${time} error: ${error.message}`);
   next(error);
 };
 
