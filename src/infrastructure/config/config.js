@@ -1,13 +1,12 @@
-import dotenv from "dotenv";
+require("dotenv").config();
 
-dotenv.config();
-
-export default {
+module.exports = {
   development: {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASS,
     database: process.env.DATABASE || "database_development",
     host: process.env.DB_HOST,
+    logging: false,
     dialect: "postgres",
     dialectOptions: {
       charset: "utf8",
@@ -17,11 +16,10 @@ export default {
     },
   },
   test: {
-    username: process.env.DATABASE_USERNAME,
-    password: process.env.DATABASE_PASS,
     database: process.env.DB_NAME || "database_test",
-    host: process.env.DB_HOST,
-    dialect: "postgres",
+    dialect: "sqlite",
+    storage: ":memory:",
+    logging: false,
     dialectOptions: {
       charset: "utf8",
     },
@@ -32,7 +30,7 @@ export default {
   production: {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASS,
-    database: process.env.DB_NAME || "database_production",
+    database: process.env.DATABASE || "database_production",
     host: process.env.DB_HOST,
     dialect: "postgres",
     dialectOptions: {
