@@ -1,4 +1,5 @@
-import dotenv from "dotenv";
+// @ts-ignore
+import config from "../config/config.js";
 import { Sequelize } from "sequelize-typescript";
 import { ClientModel } from "../../../src/modules/client-adm/repository/client.model";
 import { InvoiceModel } from "../../../src/modules/invoice/repository/invoice.model";
@@ -7,20 +8,15 @@ import ProductModel from "../../../src/modules/store-catalog/repository/product.
 import { ProductModel as ProductAdmModel } from "../../../src/modules/product-adm/repository/product.model";
 import { ProductModel as InvoiceProductModel } from "../../../src/modules/invoice/repository/invoice.product.model";
 import { CheckoutModel } from "../../../src/modules/checkout/repository/checkout.model";
-
-dotenv.config();
+import { setupMigrations } from "../config/umzug";
 
 export let sequelize: Sequelize;
 
 async function setupDb() {
-  sequelize = new Sequelize({
-    dialect: "postgres",
-    username: process.env.DATABASE_USERNAME || "root",
-    password: process.env.DATABASE_PASS || "123456",
-    host: process.env.DB_HOST || "localhost",
-    database: process.env.DATABASE || "fc-challenge",
-    logging: false,
-  });
+  const env = process.env.NODE_ENV || "development";
+
+  sequelize = new Sequelize(config[env]);
+
   sequelize.addModels([
     CheckoutModel,
     ClientModel,
@@ -31,7 +27,7 @@ async function setupDb() {
     ProductModel,
   ]);
 
-  await sequelize.sync();
+  setupMigrations(sequelize);
 }
 
 setupDb().catch((err) => Promise.reject(err));
