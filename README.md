@@ -17,7 +17,7 @@ Create an .env file and add the variables present in the .env.example file. Afte
 Run the command below to launch the application:
 
 ```zsh
-  yarn db:seed
+  yarn dev
 ```
 
 Your web server is now exposed on http://localhost:3000.
