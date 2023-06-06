@@ -33,3 +33,9 @@ Run the following command to run all tests
 ```zsh
   yarn test
 ```
+
+## Graphql Playground
+
+You can perform either rest or graphql calls. The latter are available at the localhost:3000/graphql endpoint.
+
+[![Logo](./graphql.png)](https://graphql.org/)
