@@ -5,6 +5,15 @@ volumes:
     driver: local
 
 services:
+  app:
+    build: .
+    volumes:
+      - .:/node/app
+    ports:
+      - 3000:3000
+    networks:
+      - fc-challenge-typescript
+
   postgres:
     image: postgres
     # volumes:
