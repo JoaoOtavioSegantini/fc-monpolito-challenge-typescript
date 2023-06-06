@@ -14,7 +14,7 @@ describe("Add client integration test", () => {
       sync: { force: true },
     });
 
-    jest.useFakeTimers("modern").setSystemTime(new Date(2023, 9, 1, 7));
+    jest.useFakeTimers().setSystemTime(new Date(2023, 9, 1, 7));
 
     sequelize.addModels([ClientModel]);
     await sequelize.sync();

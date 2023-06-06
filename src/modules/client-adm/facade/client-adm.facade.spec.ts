@@ -26,7 +26,7 @@ describe("ClientAdmFacade test", () => {
 
     const now = new Date();
 
-    jest.useFakeTimers("modern").setSystemTime(now);
+    jest.useFakeTimers().setSystemTime(now);
 
     const input = {
       id: "1",

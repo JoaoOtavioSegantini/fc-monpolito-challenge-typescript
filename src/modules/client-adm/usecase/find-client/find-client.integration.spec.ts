@@ -29,7 +29,7 @@ describe("Add client integration test", () => {
     const addUsecase = new AddClientUseCase(repository);
 
     const now = new Date();
-    jest.useFakeTimers("modern").setSystemTime(now);
+    jest.useFakeTimers().setSystemTime(now);
 
     const client = {
       id: "1",

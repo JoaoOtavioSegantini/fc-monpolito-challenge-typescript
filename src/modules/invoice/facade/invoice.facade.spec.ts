@@ -55,7 +55,7 @@ describe("InvoiceFacade test", () => {
 
     const data = new Date();
 
-    jest.useFakeTimers("modern").setSystemTime(data);
+    jest.useFakeTimers().setSystemTime(data);
 
     await facade.generate(inputInvoice);
     const invoiceDb = await InvoiceModel.findOne({

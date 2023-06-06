@@ -7,7 +7,7 @@ import ProductModel from "../../repository/product.model";
 describe("find all products integration test", () => {
   let sequelize: Sequelize;
   const now = new Date();
-  jest.useFakeTimers("modern").setSystemTime(now);
+  jest.useFakeTimers().setSystemTime(now);
 
   beforeEach(async () => {
     sequelize = new Sequelize({

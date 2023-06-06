@@ -35,7 +35,7 @@ describe("Invoice Repository test", () => {
 
     const product = new Product(inputProduct);
     const now = new Date();
-    jest.useFakeTimers("modern").setSystemTime(now);
+    jest.useFakeTimers().setSystemTime(now);
     const inputInvoice = {
       id: new Id("1"),
       name: "a simple facade",
@@ -96,7 +96,7 @@ describe("Invoice Repository test", () => {
     };
     const product = new Product(inputProduct);
     const now = new Date();
-    jest.useFakeTimers("modern").setSystemTime(now);
+    jest.useFakeTimers().setSystemTime(now);
 
     const inputInvoice = {
       id: new Id("1"),

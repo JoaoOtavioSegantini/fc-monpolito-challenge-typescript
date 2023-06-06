@@ -134,8 +134,10 @@ describe("PlaceOrder usecase unit test", () => {
 
       const mockValidateProducts = jest
         //@ts-expect-error
-        .spyOn(placaOrderUsecase, "validateProducts")
-        .mockRejectedValue(new Error("No products selected") as never);
+        .spyOn(placaOrderUsecase, "validateProducts");
+
+      //     mockValidateProducts.
+      //    .mockRejectedValue(new Error("No products selected"));
 
       const input: PlaceOrderInputDto = { clientId: "1", products: [] };
       await expect(placaOrderUsecase.execute(input)).rejects.toThrow(

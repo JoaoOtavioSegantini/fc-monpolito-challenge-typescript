@@ -6,7 +6,7 @@ import TransactionModel from "../../repository/transaction.model";
 describe("Process payment usecase unit test", () => {
   let sequelize: Sequelize;
   const now = new Date();
-  jest.useFakeTimers("modern").setSystemTime(now);
+  jest.useFakeTimers().setSystemTime(now);
 
   beforeEach(async () => {
     sequelize = new Sequelize({
